@@ -1,10 +1,23 @@
+<script>
+  import { authHandler } from "../stores/authStore";
+
+    async function signout() {
+        try {
+            await authHandler.logout()
+        } catch (err) {
+            console.log(err);
+        }
+    }
+</script>
+
 <ul>
-    <h1>Boolean Hooligans</h1>
+    <h1><a href="/">Boolean Hooligans</a></h1>
     <li><a href="/">Home</a></li>
     <li><a href="/jack">Jack</a></li>
     <li><a href="/shaun">Shaun</a></li>
     <li><a href="/matt">Matt</a></li>
     <li><a href="/eli">Eli</a></li>
+    <li style="float:right"><button on:click={signout}>logout</button></li>
     <li style="float:right"><a class="active" href="sign-in">Sign in</a></li>
 </ul>
 
@@ -35,6 +48,10 @@ li a {
 
 h1 {
     text-align: center;
+}
+
+h1 a {
+    text-decoration: none;
     color: #04AA6D;
 }
 

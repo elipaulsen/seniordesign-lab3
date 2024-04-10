@@ -1,15 +1,22 @@
 <script>
+  import { authStore } from "../stores/authStore";
+
+    
     export let name = '';
 
     let comments = [];
     let text = '';
+    let userSignedIn;
+    authStore.subscribe((curr) => {
+        userSignedIn = curr?.currentUser?.email;
+    })
 
     function postComment() {
         if (text && !/^\s*$/.test(text)) {
             comments = [...comments, {
                 text: text,
                 timestamp: new Date().toDateString(),
-                author: 'anonymous'
+                author: userSignedIn
             }];
             text = '';
         }
